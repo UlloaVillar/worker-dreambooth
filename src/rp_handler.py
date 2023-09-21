@@ -184,6 +184,12 @@ def handler(job):
 
     trained_ckpt = f"/workspace/job_files/{job['id']}/{job['id']}.ckpt"
 
+    destination_directory = "/runpod-volume/stable-diffusion-webui/models/Stable-diffusion"
+    destination_filepath = os.path.join(destination_directory, f"{job['id']}.ckpt")
+
+    # Move file
+    shutil.move(trained_ckpt, destination_filepath)
+
     # --------------------------------- Inference -------------------------------- #
     if 'inference' in job_input:
         os.makedirs(f"job_files/{job['id']}/inference_output", exist_ok=True)
