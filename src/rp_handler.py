@@ -60,8 +60,9 @@ def handler(job):
     train_input = validated_train_input['validated_input']
 
     # Validate the inference input
-    if 's3Config' not in job and 'inference' not in job_input:
-        return {"error": "Please provide either an inference input or an S3 config."}
+    # Default training is on network volume now
+    #if 's3Config' not in job and 'inference' not in job_input:
+        #return {"error": "Please provide either an inference input or an S3 config."}
     if 'inference' in job_input:
 
         # Ensure that the inference input is a list
